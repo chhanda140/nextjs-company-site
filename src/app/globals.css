@@ -1,26 +1,299 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* LAYOUT */
+header, footer {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+footer {
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+  color: #777;
+  margin-top: 40px;
+}
+
+.container {
+  max-width: 1080px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 10px 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #444;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #000;
+}
+
+/* TYPOGRAPHY */
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  background: #f8f8f8;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* BUTTONS */
+.button {
+  display: inline-block;
+  background: #0070f3;
+  padding: 12px 18px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.button:hover {
+  background: #0056c9;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  p { font-size: 16px; }
+}
+
+/* ---------------- NAVBAR (responsive) ---------------- */
+
+.navbar {
+  border-bottom: 1px solid #e6e6e6;
+  background: white;
+}
+
+.navbar-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.navbar-logo img {
+  display: block;
+  height: 40px;
+  width: auto;
+  border-radius: 6px;
+}
+
+.navbar-logo-text {
+  font-weight: 700;
+  color: #111;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+/* default link style */
+.navbar-link {
+  text-decoration: none;
+  color: #444;
+  font-weight: 600;
+  padding: 8px 6px;
+  border-radius: 6px;
+}
+
+.navbar-link:hover {
+  background: #f2f4f7;
+  color: #111;
+}
+
+/* active link */
+.navbar-link-active {
+  color: #000;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* hamburger button (hidden on desktop) */
+.navbar-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* hamburger lines */
+.navbar-hamburger .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #222;
+  margin: 4px 0;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+/* mobile menu (hidden by default) */
+.navbar-mobile {
+  display: none;
+  background: white;
+  border-top: 1px solid #eee;
+  width: 100%;
+}
+
+/* mobile menu inner */
+.navbar-mobile .mobile-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* mobile link style */
+.navbar-mobile .navbar-link {
+  display: block;
+  padding: 12px 10px;
+  border-radius: 6px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 880px) {
+  .navbar-links {
+    display: none; /* hide desktop links */
+  }
+  .navbar-hamburger {
+    display: inline-flex;
+  }
+
+  /* show mobile menu when active (we toggle .open on the menu) */
+  .navbar-mobile.open {
+    display: block;
+  }
+}
+
+/* small polish */
+@media (max-width: 420px) {
+  .navbar-logo-text { display: none; } /* keep only logo on tiny screens */
+}
+
+/* Page container */
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Page header */
+.page-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+/* Portfolio grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Cards */
+.portfolio-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+  transition: box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Images */
+.portfolio-image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* Titles */
+.portfolio-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.portfolio-desc {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666;
 }
